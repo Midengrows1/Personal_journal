@@ -5,6 +5,8 @@ const Main = () => {
   return (
     <div className={clsx(s.main, "font-FiraSans")}>
       <h2 className={s.main_title}>Hello</h2>
+      <div className={s.main_date}></div>
+      <div></div>
     </div>
   );
 };
