@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 .app{
-  @apply bg-[#4A55A2] h-screen flex flex-col justify-center p-4;
+  @apply bg-[#272829] h-screen flex flex-col justify-center p-4;
 }
 .app > * {
   @apply rounded-md

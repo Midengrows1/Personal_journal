@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         Smooch: ["Smooch", "cursive"],
+        FiraSans: ["Fira Sans", "sans-serif"],
       },
     },
   },

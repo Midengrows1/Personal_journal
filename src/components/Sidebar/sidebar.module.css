@@ -1,3 +1,12 @@
 .sidebar{
-    @apply w-3/12  h-full bg-[#7895CB] rounded-md;
+    @apply w-3/12  h-full bg-[#61677A] rounded-md ;
+}
+.btn_side:active{
+    @apply bg-[#A0BFE0] text-white ;
+}
+.btn_side{
+@apply bg-[#C5DFF8] border-black w-full p-3 inline-flex justify-between  items-center rounded-md; 
+}
+.memory_container{
+    @apply  mt-10
 }
