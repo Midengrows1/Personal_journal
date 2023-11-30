@@ -1,0 +1,8 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.app{
+  @apply bg-blue-900  h-screen;
+}
