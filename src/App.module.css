@@ -7,10 +7,13 @@
   @apply bg-[#272829] h-screen flex flex-col justify-center p-4;
 }
 .app > * {
-  @apply rounded-md
+  @apply rounded-md ;
 }
 .app_inner{
   @apply  flex  h-screen py-5 items-center gap-10 ;
+}
+.app_inner >*{
+  @apply h-full;
 }
 .fontheading{
   font-family: 'Smooch', cursive;

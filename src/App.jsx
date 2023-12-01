@@ -1,8 +1,6 @@
-import { useState } from "react";
-import clsx from "clsx";
 import s from "./App.module.css";
 import { Main, Sidebar } from "./components";
-import { Header } from "antd/es/layout/layout";
+import { Header } from "./components";
 function App() {
   return (
     <div className={s.app}>
