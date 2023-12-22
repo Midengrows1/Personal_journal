@@ -3,21 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-.app{
-  @apply bg-[#272829] h-screen flex flex-col justify-center p-4;
-}
-.app > * {
-  @apply rounded-md ;
-}
-.app_inner{
-  @apply  flex  h-screen py-5 items-center gap-10 ;
-}
-.app_inner >*{
-  @apply h-full;
-}
-.fontheading{
-  font-family: 'Smooch', cursive;
-}
 .app_top{
   @apply flex items-center  h-20 bg-[#C5DFF8] text-3xl pl-4 ;
 }

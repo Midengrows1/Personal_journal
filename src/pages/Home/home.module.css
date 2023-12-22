@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.app {
+  @apply bg-[#272829] flex flex-col justify-center p-4;
+}
+.app > * {
+  @apply rounded-md;
+}
+.app_inner {
+  @apply flex   gap-10;
+}
+.fontheading {
+  font-family: "Smooch", cursive;
+}
