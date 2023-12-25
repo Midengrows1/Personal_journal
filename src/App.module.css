@@ -1,0 +1,8 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.app_top{
+  @apply flex items-center  h-20 bg-[#C5DFF8] text-3xl pl-4 ;
+}
