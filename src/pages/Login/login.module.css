@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.login{
+    @apply flex justify-center items-center h-screen overflow-hidden bg-slate-600;
+}
+.login_form{
+    @apply flex flex-col items-center gap-4;
+}
+.login_form input{
+    @apply w-72 p-10;
+}

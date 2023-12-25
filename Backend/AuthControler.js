@@ -5,22 +5,10 @@ import User from "./models/User.js";
 import Data from "./models/Data.js";
 import multer from "multer";
 import fs from "fs";
-<<<<<<< HEAD
-import nodemailer from "nodemailer";
-import dotenv from "dotenv";
-import crypto from "crypto";
-import path, { dirname } from "path";
-import { fileURLToPath } from "url";
-import { Router } from "express";
-import { error } from "console";
-import { config } from "process";
-dotenv.config();
-=======
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { Router } from "express";
 
->>>>>>> 710c6c4426870ba8087e26f1e58be4f9b66177fc
 // ------------Start of authorization---------------------------
 async function registration(req, res) {
   const { password, email, username } = req.body;
@@ -88,14 +76,9 @@ function verifyToken(req, res, next) {
       if (err) {
         return res.status(401).json({ error: "Неверный токен" });
       }
-<<<<<<< HEAD
-      req.userId = decoded.userId;
-      req.email = decoded.email;
-=======
       const myUser = req.user;
       req.user = decoded;
       res.json(decoded);
->>>>>>> 710c6c4426870ba8087e26f1e58be4f9b66177fc
       next();
     });
   } catch (error) {
@@ -130,15 +113,8 @@ const upload = multer({
 });
 
 function createMemory(req, res) {
-<<<<<<< HEAD
-  const user = req.userId;
   const newMemory = new Data({
     ...req.body,
-    user,
-=======
-  const newMemory = new Data({
-    ...req.body,
->>>>>>> 710c6c4426870ba8087e26f1e58be4f9b66177fc
   });
   const relativePath = path.relative(__dirname, req.file.path);
   console.log(relativePath);
@@ -156,148 +132,4 @@ function createMemory(req, res) {
     });
   }
 }
-<<<<<<< HEAD
-async function getMemories(req, res) {
-  const user = req.userId;
-  const email = req.email;
-  const userMemory = await Data.find({ user });
-  console.log(email);
-  res.json({ memory: userMemory });
-}
-async function getUser(req, res) {
-  const userID = req.userId;
-  const foundedUser = await User.findOne({ _id: userID });
-  res.json(foundedUser);
-}
-async function deleteMemory(req, res) {
-  try {
-    const userID = req.userId;
-    const { memoryId } = req.params;
-    await Data.findOneAndDelete({
-      _id: memoryId,
-      user: userID,
-    });
-    res.status(200).json({ message: "Воспоминание  успешно удалено" });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ error: `Ошибка при удалении Воспоминания ` + error.message });
-  }
-}
-// оставим на потом
-async function editMemory(req, res) {
-  try {
-    const userID = req.userId;
-    const { memoryId } = req.params;
-    const { text, title } = req.body;
-    const memory = await Data.findOneAndUpdate(
-      { user: userID, _id: memoryId },
-      {
-        title: title,
-        text: text,
-      },
-      { new: true }
-    );
-    res.status(200).json({ message: "Memory updated successfully", memory });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-}
-async function searchMemories(req, res) {
-  try {
-    const userID = req.userId;
-    console.log(userID);
-    const { searchTerm } = req.query;
-    const regex = new RegExp(searchTerm, "i");
-    const result = await Data.find({ title: regex, user: userID });
-    res.status(200).json(result);
-  } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-}
-// востановление пароля
-const passwordResetTokens = {};
-function generateResetToken() {
-  return crypto.randomBytes(20).toString("hex");
-}
-function forgetPassword(req, res) {
-  const { email } = req.body;
-  const user = User.find({ email });
-  if (!user) {
-    return res.status(404).json({ error: "Пользователь не найден" });
-  }
-  try {
-    const resetToken = generateResetToken();
-    passwordResetTokens.email = resetToken;
-    const transporter = nodemailer
-      .createTransport({
-        service: "gmail",
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASSWORD,
-        },
-      })
-      .on("log", console.log);
-    console.log(process.env.EMAIL_PASSWORD);
-    console.log(process.env.EMAIL_USER);
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "Сбросс пароля",
-      text: `Click on the folfowing link to reset your password  http://localhost:5001/reset-password/${resetToken} `,
-    };
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        return res.status(500).json(error.message);
-      }
-      res.json({ message: "Ссылка скинута успешно" });
-    });
-  } catch (error) {
-    res.status(500).json(error.message);
-  }
-}
-async function resetPasswordFunc(req, res) {
-  const { token } = req.params;
-  console.log(passwordResetTokens.token);
-  if (!passwordResetTokens.token) {
-    return res.status(400).json(error.message);
-  }
-  await res.send(
-    `<form action=/reset-password method="post">
-    <input type="hidden" name="token" value="${token}">
-    <label>New Password: <input type="password" name="newPassword"></label>
-    <input type="submit" value="Reset Password">
-  </form>`
-  );
-}
-async function resetPassword(req, res) {
-  const { token, newPassword } = req.body;
-
-  if (!passwordResetTokens.token) {
-    return res.status(400).json(error.message);
-  }
-  const email = await passwordResetTokens.token;
-  const user = User.find({ email });
-  user.password = newPassword;
-  delete passwordResetTokens.token;
-  res.json({ message: "Пароль успешно создан" });
-  console.log(user.password);
-}
-export {
-  registration,
-  login,
-  verifyToken,
-  createMemory,
-  upload,
-  getMemories,
-  getUser,
-  deleteMemory,
-  editMemory,
-  searchMemories,
-  forgetPassword,
-  resetPasswordFunc,
-  resetPassword,
-};
-=======
 export { registration, login, verifyToken, createMemory, upload };
->>>>>>> 710c6c4426870ba8087e26f1e58be4f9b66177fc
