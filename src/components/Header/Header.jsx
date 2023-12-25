@@ -3,20 +3,21 @@ import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "antd";
+import { Button, Tooltip, ConfigProvider } from "antd";
 import s from "./header.module.css";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signOut } from "../../store/JournalSlice";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 const Header = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   const signOutBtn = () => {
     dispatch(signOut());
-    Navigate("/public");
+    navigate("/public");
   };
   const getUserData = async () => {
     const token = localStorage.getItem("userToken");
@@ -50,9 +51,11 @@ const Header = () => {
           <Avatar size={"large"} icon={<UserOutlined />} />
         </div>
         <div className={s.authorization}>
-          <Button type="primary" danger onClick={() => signOutBtn()}>
-            <FontAwesomeIcon icon={faRightFromBracket}></FontAwesomeIcon>
-          </Button>
+          <Tooltip placement="bottomLeft" title={"Sign out"}>
+            <Button type="primary" danger onClick={() => signOutBtn()}>
+              <FontAwesomeIcon icon={faRightFromBracket}></FontAwesomeIcon>
+            </Button>
+          </Tooltip>
         </div>
       </div>
     </div>

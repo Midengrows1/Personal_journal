@@ -49,7 +49,7 @@ const Registration = () => {
           navigate("/auth/login");
         });
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error.response);
     }
   };
   return (

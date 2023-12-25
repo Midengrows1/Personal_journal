@@ -3,47 +3,10 @@ import s from "./main.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { faFolder } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
-import { useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-const Main = ({ match }) => {
-  const dispatch = useDispatch();
-  const { memoryId } = useParams();
-  const stateDeleted = useSelector((state) => state.auth.deleted);
-  // const stateMem = useSelector((state) => state.auth.mainMemory);
-  const [mmryData, setmmryData] = useState([]);
-  const [mmryObject, setmmryObject] = useState({});
-  const token = localStorage.getItem("userToken");
-  const axiosWithAuth = axios.create({
-    headers: {
-      Authorization: `${token}`,
-    },
-  });
-  const getMemories = async () => {
-    try {
-      const response = await axiosWithAuth.get("http://localhost:5001/");
-      const resData = response.data.memory;
-      setmmryData(resData);
-      setmmryObject(resData[resData.length - 1]);
-    } catch (error) {
-      console.log(`Ошибка при получении данных${error.message}`);
-    }
-  };
-  useEffect(() => {
-    getMemories();
-  }, []);
-  useEffect(() => {
-    mmryData.forEach((item) => {
-      if (item._id == memoryId) {
-        setmmryObject(item);
-      }
-    });
-    console.log(mmryData);
-  }, [memoryId]);
 
+const Main = ({ objectArr }) => {
   try {
-    const { title, text, activity, date, image } = mmryObject;
+    const { title, text, activity, date, image } = objectArr;
     return (
       <div className={clsx(s.main, "font-FiraSans")}>
         <h2 className={s.main_title}>{title}</h2>

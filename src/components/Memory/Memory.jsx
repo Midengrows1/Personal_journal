@@ -26,7 +26,6 @@ const Memory = ({ title, text, mmArr, id }) => {
           console.log(res.data.message);
         });
       dispatch(reverseDeleted());
-      console.log(deleted);
     } catch (error) {
       console.log(`${error.message}`);
     }

@@ -1,6 +1,7 @@
 import react, { useState } from "react";
 import axios from "axios";
 import s from "./creatememory.module.css";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Checkbox,
@@ -22,23 +23,15 @@ import {
 const { TextArea } = Input;
 import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
 const { Option } = Select;
-// const formItemLayout = {
-//   wrapperCol: {
-//     span: 14,
-//   },
+
+// const normFile = (e) => {
+//   console.log(e);
 // };
-const normFile = (e) => {
-  console.log(e);
-};
 const CreateMemory = () => {
+  const navigate = useNavigate();
   const [file, setFile] = useState(null);
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState("horizontal");
-  // const upload = async () => {
-  //   const formData = new FormData();
-  //   formData.append("file", file);
-  //
-  // };
   const onFinish = async (values) => {
     const token = localStorage.getItem("userToken");
     console.log(token);
@@ -80,6 +73,7 @@ const CreateMemory = () => {
       // Check the status code to determine if the request was successful
       if (response.status === 200) {
         console.log(response.data);
+        navigate("/");
       } else {
         console.error(`Request failed with status ${response.status}`);
       }

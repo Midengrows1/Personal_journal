@@ -1,5 +1,5 @@
 .sidebar{
-    @apply w-3/12  bg-[#61677A] rounded-md  overflow-hidden p-2;
+    @apply w-3/12  bg-[#61677A] rounded-md  overflow-auto p-2;
 }
 .btn_side:active{
     @apply bg-[#A0BFE0] text-white ;
@@ -28,5 +28,8 @@
     color: white;
 }
 .memory_container{
-    @apply  mt-10
+    @apply  mt-2;
+}
+.search_mmry{
+    @apply p-2 flex-auto h-fit;
 }
