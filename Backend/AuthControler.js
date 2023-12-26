@@ -11,7 +11,7 @@ import crypto from "crypto";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { Router } from "express";
-import { error } from "console";
+import { error, log } from "console";
 import { config } from "process";
 dotenv.config();
 // ------------Start of authorization---------------------------
@@ -209,7 +209,8 @@ function forgetPassword(req, res) {
   }
   try {
     const resetToken = generateResetToken();
-    passwordResetTokens.email = resetToken;
+    passwordResetTokens.token = resetToken;
+    passwordResetTokens.email = email;
     const transporter = nodemailer
       .createTransport({
         service: "gmail",
@@ -239,30 +240,43 @@ function forgetPassword(req, res) {
 }
 async function resetPasswordFunc(req, res) {
   const { token } = req.params;
-  console.log(passwordResetTokens.token);
-  if (!passwordResetTokens.token) {
+  if (passwordResetTokens["token"] != token) {
     return res.status(400).json(error.message);
   }
   await res.send(
-    `<form action=/reset-password method="post">
-    <input type="hidden" name="token" value="${token}">
-    <label>New Password: <input type="password" name="newPassword"></label>
-    <input type="submit" value="Reset Password">
-  </form>`
+    ` <form method="post" action="/reset-password"  enctype="application/x-www-form-urlencoded" onsubmit="submitForm(event)">
+  <input type="hidden" name="token" value="${token}">
+  <label>New Password: <input type="password" name="newPassword"></label>
+  <input type="submit" value="Reset Password">
+</form>`
   );
+  console.log();
 }
 async function resetPassword(req, res) {
   const { token, newPassword } = req.body;
-
-  if (!passwordResetTokens.token) {
+  console.log(token, newPassword);
+  if (!newPassword) {
+    return res.status(400).json({ error: "Заполните поле" });
+  }
+  if (!passwordResetTokens["token"]) {
     return res.status(400).json(error.message);
   }
-  const email = await passwordResetTokens.token;
-  const user = User.find({ email });
-  user.password = newPassword;
-  delete passwordResetTokens.token;
-  res.json({ message: "Пароль успешно создан" });
-  console.log(user.password);
+  const email = await passwordResetTokens["email"];
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+    user.set({ password: hashedPassword });
+    await user.save();
+    delete passwordResetTokens["token"];
+    res.json({ message: "Password reset successfully", user });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 }
 export {
   registration,

@@ -5,6 +5,7 @@ import cors from "cors";
 import AuthRouter from "./AuthRouter.js";
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 const port = 5001;
 const mongoUrl = `mongodb+srv://amirm1dengrows777:KLC16qSj0Y264CFM@cluster0.xwp6sil.mongodb.net/Myjournal?retryWrites=true&w=majority`;
 mongoose
