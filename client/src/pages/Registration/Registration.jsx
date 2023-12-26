@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import s from "./registration.module.css";
-import { AutoComplete, Button, Form, Input, Select } from "antd";
+import { AutoComplete, Button, Form, Input, Select, notification } from "antd";
+import { SmileOutlined } from "@ant-design/icons";
 import { NavLink, json, useNavigate } from "react-router-dom";
-import ajax from "ajax";
+import { useEffect } from "react";
 import axios from "axios";
 const formItemLayout = {
   labelCol: {
@@ -35,10 +36,17 @@ const tailFormItemLayout = {
   },
 };
 const Registration = () => {
+  const api = notification;
   const navigate = useNavigate();
   const [autoCompleteResult, setAutoCompleteResult] = useState([]);
   const onSearch = (value) => console.log("search:", value);
   const [form] = Form.useForm();
+  const openNotification = (message) => {
+    api.open({
+      message: `${message}`,
+      duration: 3,
+    });
+  };
   const onFinish = async (values) => {
     console.log("Received values of form:");
     try {
@@ -46,12 +54,15 @@ const Registration = () => {
         .post("http://localhost:5001/auth/registration", values)
         .then((res) => {
           console.log(res.data);
+          openNotification(res.data.message);
           navigate("/auth/login");
         });
     } catch (error) {
-      console.log(error.response);
+      console.log(error.response.data.error);
+      openNotification(error.response.data.error);
     }
   };
+
   return (
     <div className={s.registration}>
       <Form
