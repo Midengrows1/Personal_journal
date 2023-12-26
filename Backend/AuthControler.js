@@ -5,10 +5,15 @@ import User from "./models/User.js";
 import Data from "./models/Data.js";
 import multer from "multer";
 import fs from "fs";
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+import crypto from "crypto";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { Router } from "express";
-
+import { error } from "console";
+import { config } from "process";
+dotenv.config();
 // ------------Start of authorization---------------------------
 async function registration(req, res) {
   const { password, email, username } = req.body;
@@ -76,9 +81,8 @@ function verifyToken(req, res, next) {
       if (err) {
         return res.status(401).json({ error: "Неверный токен" });
       }
-      const myUser = req.user;
-      req.user = decoded;
-      res.json(decoded);
+      req.userId = decoded.userId;
+      req.email = decoded.email;
       next();
     });
   } catch (error) {
@@ -113,8 +117,10 @@ const upload = multer({
 });
 
 function createMemory(req, res) {
+  const user = req.userId;
   const newMemory = new Data({
     ...req.body,
+    user,
   });
   const relativePath = path.relative(__dirname, req.file.path);
   console.log(relativePath);
@@ -132,7 +138,6 @@ function createMemory(req, res) {
     });
   }
 }
-
 async function getMemories(req, res) {
   const user = req.userId;
   const email = req.email;
@@ -274,4 +279,3 @@ export {
   resetPasswordFunc,
   resetPassword,
 };
-export { registration, login, verifyToken, createMemory, upload };

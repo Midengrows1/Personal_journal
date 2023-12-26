@@ -6,7 +6,6 @@ import {
   verifyToken,
   createMemory,
   upload,
-
   getMemories,
   getUser,
   deleteMemory,
@@ -31,7 +30,4 @@ router.get("/memories", verifyToken, searchMemories);
 router.post("/forgot-password", forgetPassword);
 router.get("/reset-password/:token", resetPasswordFunc);
 router.post("/reset-password", resetPassword);
-
-router.post("/create", upload.single("image"), createMemory);
-
 export default router;
