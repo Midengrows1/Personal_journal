@@ -7,7 +7,7 @@ import {
   CreateMemory,
   Defaultpage,
   NotFoundPage,
-  Removal,
+  ForgotPassword,
 } from "./pages";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 function App() {
@@ -19,6 +19,10 @@ function App() {
       </Route>
       <Route path="/create" element={<CreateMemory></CreateMemory>}></Route>
       <Route path="/memories/:memoryId" element={<Home></Home>}></Route>
+      <Route
+        path="/forgot-password"
+        element={<ForgotPassword></ForgotPassword>}
+      ></Route>
       <Route
         path="/auth/registration"
         element={<Registration></Registration>}

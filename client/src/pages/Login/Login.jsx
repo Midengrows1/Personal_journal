@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Checkbox } from "antd";
 import { authUser } from "../../store/JournalSlice";
+import { Link } from "react-router-dom";
 import axios from "axios";
 const Login = () => {
   const [form] = Form.useForm();
@@ -73,8 +74,14 @@ const Login = () => {
             placeholder="Password"
           />
         </Form.Item>
-        <Form.Item name="remember" valuePropName="checked">
-          <Checkbox>Remember me</Checkbox>
+        <Form.Item>
+          <Form.Item name="remember" valuePropName="checked" noStyle>
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
+          <Link className="login-form-forgot" to={"/forgot-password"}>
+            Forgot password
+          </Link>
+          {/* <a href="">Forgot password</a> */}
         </Form.Item>
         <Form.Item shouldUpdate>
           {() => (
@@ -92,6 +99,7 @@ const Login = () => {
             </Button>
           )}
         </Form.Item>
+        <Link to={"/auth/registration"}> Or register now!</Link>
       </Form>
     </div>
   );

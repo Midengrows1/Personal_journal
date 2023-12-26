@@ -273,7 +273,8 @@ async function resetPassword(req, res) {
     user.set({ password: hashedPassword });
     await user.save();
     delete passwordResetTokens["token"];
-    res.json({ message: "Password reset successfully", user });
+    res.send(`Пароль успешно сохранён`);
+    // res.json({ message: "Password reset successfully", user });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
