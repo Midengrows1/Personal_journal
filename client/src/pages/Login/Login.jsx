@@ -24,7 +24,7 @@ const Login = () => {
   const onFinish = async (values) => {
     try {
       axios
-        .post(`https://personal-journal-server.vercel.app/auth/login`, values)
+        .post(`http://localhost:5001/auth/login`, values)
         .then((res) => {
           localStorage.setItem("userToken", res.data.token);
           dispatch(authUser(res.data.token));
