@@ -22,6 +22,14 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"], // Добавляем 'Authorization' в список разрешенных заголовков
   })
 );
+app.use(
+  cors({
+    origin: "https://personal-journal-client.vercel.app",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 204,
+  })
+);
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:5173");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
