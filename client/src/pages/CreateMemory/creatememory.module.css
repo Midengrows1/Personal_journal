@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.Crtmemory {
+  @apply bg-slate-600 w-full h-max min-h-screen flex flex-col items-center justify-center text-slate-50;
+}
+.form_create {
+  @apply p-2 m-0 max-w-lg w-full;
+}

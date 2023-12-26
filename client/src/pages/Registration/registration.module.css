@@ -1,0 +1,12 @@
+.registration{
+    @apply h-screen overflow-hidden flex  flex-col justify-center items-center  w-full bg-slate-600;
+}
+.registration_form{
+    @apply max-w-xl w-full 
+}
+.registration_form >*{
+    @apply w-full
+}
+.registration_btn{
+    @apply bg-red-800
+}
