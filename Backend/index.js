@@ -17,17 +17,9 @@ mongoose
   });
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "*",
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"], // Добавляем 'Authorization' в список разрешенных заголовков
-  })
-);
-app.use(
-  cors({
-    origin: "https://personal-journal-client.vercel.app",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-    optionsSuccessStatus: 204,
   })
 );
 app.use((req, res, next) => {
