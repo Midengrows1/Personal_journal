@@ -4,27 +4,37 @@ import s from "./login.module.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Form, Input, Checkbox } from "antd";
+import { Button, Form, Input, Checkbox, notification, message } from "antd";
 import { authUser } from "../../store/JournalSlice";
 import { Link } from "react-router-dom";
 import axios from "axios";
 const Login = () => {
   const [form] = Form.useForm();
   const [clientReady, setClientReady] = useState(false);
+  const api = notification;
+  const openNotification = (message) => {
+    api.open({
+      message: `${message}`,
+      duration: 3,
+    });
+  };
   useEffect(() => {
     setClientReady(true);
   }, []);
   const onFinish = async (values) => {
-    console.log("Finish:", values);
     try {
-      axios.post(`http://localhost:5001/auth/login`, values).then((res) => {
-        console.log(res.data);
-        localStorage.setItem("userToken", res.data.token);
-        dispatch(authUser(res.data.token));
-        navigate("/");
-      });
+      axios
+        .post(`http://localhost:5001/auth/login`, values)
+        .then((res) => {
+          localStorage.setItem("userToken", res.data.token);
+          dispatch(authUser(res.data.token));
+          navigate("/");
+        })
+        .catch((err) => {
+          openNotification(err.response.data.error);
+        });
     } catch (error) {
-      console.log(error.message);
+      console.log("1");
     }
   };
   const navigate = useNavigate();

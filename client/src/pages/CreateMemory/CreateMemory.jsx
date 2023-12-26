@@ -4,21 +4,12 @@ import s from "./creatememory.module.css";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
-  Checkbox,
-  Col,
-  ColorPicker,
   Form,
-  InputNumber,
-  Radio,
-  Rate,
-  Row,
   Select,
-  Slider,
-  Space,
-  Switch,
   Upload,
   DatePicker,
   Input,
+  notification,
 } from "antd";
 const { TextArea } = Input;
 import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
@@ -32,6 +23,13 @@ const CreateMemory = () => {
   const [file, setFile] = useState(null);
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState("horizontal");
+  const api = notification;
+  const openNotification = () => {
+    api.open({
+      message: `Воспоминание успешно добавлено`,
+      duration: 3,
+    });
+  };
   const onFinish = async (values) => {
     const token = localStorage.getItem("userToken");
     console.log(token);
@@ -74,6 +72,7 @@ const CreateMemory = () => {
       if (response.status === 200) {
         console.log(response.data);
         navigate("/");
+        openNotification();
       } else {
         console.error(`Request failed with status ${response.status}`);
       }
