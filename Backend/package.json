@@ -4,8 +4,11 @@
   "description": "backend for personal journal",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "node index.js"
   },
   "author": "",
   "license": "ISC",
