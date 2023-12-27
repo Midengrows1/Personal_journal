@@ -28,7 +28,7 @@ const Login = () => {
         .then((res) => {
           localStorage.setItem("userToken", res.data.token);
           dispatch(authUser(res.data.token));
-          navigate("/home");
+          navigate("/");
         })
         .catch((err) => {
           openNotification(err.response.data.error);

@@ -16,22 +16,25 @@ mongoose
   .catch(() => {
     console.log("Connection to Db is failed");
   });
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"], // Добавляем 'Authorization' в список разрешенных заголовков
-  })
-);
+// app.use(
+//   cors({
+//     origin: "*",
+//     credentials: true,
+//     allowedHeaders: ["Content-Type", "Authorization"], // Добавляем 'Authorization' в список разрешенных заголовков
+//   })
+// );
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'"
+  );
   next();
 });
 
-app.use(AuthRouter);
 app.use("/auth", AuthRouter);
+app.use(AuthRouter);
 app.use("/uploads", express.static("uploads"));
 app.listen(port, () => {
   console.log(`server started in http://localhost:${port} `);
