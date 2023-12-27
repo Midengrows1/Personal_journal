@@ -22,7 +22,10 @@ router.post("/registration", registration);
 router.post("/login", login);
 router.get("/protected", verifyToken);
 router.post("/create", verifyToken, upload.single("image"), createMemory);
-router.get("/", verifyToken, getMemories);
+router.get("/home", verifyToken, getMemories);
+router.get("/", (req, res) => {
+  res.json({ message: "public hello" });
+});
 router.get("/api/userInfo", verifyToken, getUser);
 router.delete("/delete/:memoryId", verifyToken, deleteMemory);
 router.patch("/edit/:memoryId", verifyToken, editMemory);

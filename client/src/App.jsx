@@ -13,9 +13,9 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 function App() {
   return (
     <Routes>
-      <Route path="/public" element={<Defaultpage></Defaultpage>}></Route>
+      <Route path="/" index element={<Defaultpage></Defaultpage>}></Route>
       <Route element={<PrivateRoute></PrivateRoute>}>
-        <Route path="/" index element={<Home></Home>}></Route>
+        <Route path="/home" element={<Home></Home>}></Route>
       </Route>
       <Route path="/create" element={<CreateMemory></CreateMemory>}></Route>
       <Route path="/memories/:memoryId" element={<Home></Home>}></Route>

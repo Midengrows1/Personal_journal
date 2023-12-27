@@ -30,8 +30,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/auth", AuthRouter);
 app.use(AuthRouter);
+app.use("/auth", AuthRouter);
 app.use("/uploads", express.static("uploads"));
 app.listen(port, () => {
   console.log(`server started in http://localhost:${port} `);

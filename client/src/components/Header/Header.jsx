@@ -17,7 +17,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const signOutBtn = () => {
     dispatch(signOut());
-    navigate("/public");
+    navigate("/");
   };
   const getUserData = async () => {
     const token = localStorage.getItem("userToken");
@@ -42,7 +42,7 @@ const Header = () => {
 
   return (
     <div className={s.app_top}>
-      <Link to="/">
+      <Link to="/home">
         <h1 className="font-Smooch">Personal Journal</h1>
       </Link>
       <div className={s.account_container}>

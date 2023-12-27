@@ -22,7 +22,7 @@ function App({}) {
   });
   const getMemories = async () => {
     try {
-      const response = await axiosWithAuth.get("http://localhost:5001/");
+      const response = await axiosWithAuth.get("http://localhost:5001/home");
       const resData = response.data.memory;
       setmmryData(resData);
       setmmryObject(resData[resData.length - 1]);
