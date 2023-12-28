@@ -226,7 +226,7 @@ function forgetPassword(req, res) {
       from: process.env.EMAIL_USER,
       to: email,
       subject: "Сбросс пароля",
-      text: `Click on the folfowing link to reset your password  http://localhost:5001/reset-password/${resetToken} `,
+      text: `Click on the folfowing link to reset your password  https://personal-journal-server.onrender.com/reset-password/${resetToken} `,
     };
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
