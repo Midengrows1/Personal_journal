@@ -22,7 +22,9 @@ function App({}) {
   });
   const getMemories = async () => {
     try {
-      const response = await axiosWithAuth.get("http://localhost:5001/home");
+      const response = await axiosWithAuth.get(
+        "https://personal-journal-server.onrender.com/home"
+      );
       const resData = response.data.memory;
       setmmryData(resData);
       setmmryObject(resData[resData.length - 1]);

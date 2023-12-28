@@ -27,7 +27,7 @@ const Header = () => {
       },
     });
     await axiosWithAuth
-      .get("http://localhost:5001/api/userInfo")
+      .get("https://personal-journal-server.onrender.com/api/userInfo")
       .then((res) => {
         console.log(res.data.email);
         setEmail(res.data.email);

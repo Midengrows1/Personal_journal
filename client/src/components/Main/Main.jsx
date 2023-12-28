@@ -39,7 +39,10 @@ const Main = ({ objectArr }) => {
           <div className={s.main_description_bottom}>
             <p>{text}</p>
             <div className={s.main_description_bottom_img}>
-              <img src={`http://localhost:5001/${image}`} alt="image" />
+              <img
+                src={`https://personal-journal-server.onrender.com/${image}`}
+                alt="image"
+              />
             </div>
             {/* <div className={s.main_description_bottom_video}>
             <img src="" alt="" />

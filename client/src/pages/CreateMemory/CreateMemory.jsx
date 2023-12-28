@@ -64,7 +64,7 @@ const CreateMemory = () => {
     console.log(obj);
     try {
       const response = await axios.post(
-        "http://localhost:5001/create",
+        "https://personal-journal-server.onrender.com/create",
         obj,
         config
       );

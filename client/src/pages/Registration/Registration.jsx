@@ -51,7 +51,10 @@ const Registration = () => {
     console.log("Received values of form:");
     try {
       const { data } = await axios
-        .post("http://localhost:5001/auth/registration", values)
+        .post(
+          "https://personal-journal-server.onrender.com/auth/registration",
+          values
+        )
         .then((res) => {
           console.log(res.data);
           openNotification(res.data.message);

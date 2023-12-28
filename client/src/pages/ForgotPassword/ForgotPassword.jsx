@@ -3,9 +3,11 @@ import { Form, Input, Button } from "antd";
 import s from "./forgotpassword.module.css";
 import axios from "axios";
 const onFinish = ({ user }) => {
-  axios.post("http://localhost:5001/forgot-password", user).then((res) => {
-    console.log(res.data);
-  });
+  axios
+    .post("https://personal-journal-server.onrender.com/forgot-password", user)
+    .then((res) => {
+      console.log(res.data);
+    });
 };
 
 const ForgotPassword = () => {

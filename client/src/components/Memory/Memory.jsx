@@ -21,7 +21,7 @@ const Memory = ({ title, text, mmArr, id }) => {
   const removeMemory = async () => {
     try {
       await axiosWithAuth
-        .delete(`http://localhost:5001/delete/${id}`)
+        .delete(`https://personal-journal-server.onrender.com//delete/${id}`)
         .then((res) => {
           console.log(res.data.message);
         });

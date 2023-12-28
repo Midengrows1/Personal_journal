@@ -21,7 +21,7 @@ const Sidebar = ({ dataArr }) => {
       },
     });
     const response = await axiosWithAuth.get(
-      `http://localhost:5001/memories?searchTerm=${value}`
+      `https://personal-journal-server.onrender.com/memories?searchTerm=${value}`
     );
     if (searchArr.length == 0) {
       setsearchArr(dataArr);
