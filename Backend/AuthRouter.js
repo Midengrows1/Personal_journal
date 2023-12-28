@@ -23,9 +23,6 @@ router.post("/login", login);
 router.get("/protected", verifyToken);
 router.post("/create", verifyToken, upload.single("image"), createMemory);
 router.get("/home", verifyToken, getMemories);
-router.get("/", (req, res) => {
-  res.json("public hello");
-});
 router.get("/api/userInfo", verifyToken, getUser);
 router.delete("/delete/:memoryId", verifyToken, deleteMemory);
 router.patch("/edit/:memoryId", verifyToken, editMemory);

@@ -13,7 +13,7 @@ const Defaultpage = () => {
   useEffect(() => {
     if (getLS) {
       dispatch(authUser(getLS));
-      navigate("/");
+      navigate("/home");
     }
   }, []);
   return (

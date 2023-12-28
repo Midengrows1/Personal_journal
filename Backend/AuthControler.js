@@ -1,6 +1,6 @@
 import { model } from "mongoose";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import User from "./models/User.js";
 import Data from "./models/Data.js";
 import multer from "multer";

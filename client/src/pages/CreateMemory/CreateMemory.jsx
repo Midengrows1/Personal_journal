@@ -71,7 +71,7 @@ const CreateMemory = () => {
       // Check the status code to determine if the request was successful
       if (response.status === 200) {
         console.log(response.data);
-        navigate("/");
+        navigate("/home");
         openNotification();
       } else {
         console.error(`Request failed with status ${response.status}`);
