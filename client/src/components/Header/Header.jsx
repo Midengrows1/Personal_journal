@@ -12,6 +12,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 const Header = () => {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const Header = () => {
       },
     });
     await axiosWithAuth
-      .get("https://personal-journal-server.onrender.com/api/userInfo")
+      .get(baseUrl + "/api/userInfo")
       .then((res) => {
         console.log(res.data.email);
         setEmail(res.data.email);
@@ -47,7 +48,9 @@ const Header = () => {
       </Link>
       <div className={s.account_container}>
         <div className={s.account}>
-          <a href="#">{email}</a>
+          <a href="#" className={s.account_email}>
+            {email}
+          </a>
           <Avatar size={"large"} icon={<UserOutlined />} />
         </div>
         <div className={s.authorization}>

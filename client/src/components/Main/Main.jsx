@@ -5,6 +5,7 @@ import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { faFolder } from "@fortawesome/free-solid-svg-icons";
 
 const Main = ({ objectArr }) => {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   try {
     const { title, text, activity, date, image } = objectArr;
     return (
@@ -39,10 +40,7 @@ const Main = ({ objectArr }) => {
           <div className={s.main_description_bottom}>
             <p>{text}</p>
             <div className={s.main_description_bottom_img}>
-              <img
-                src={`https://personal-journal-server.onrender.com/${image}`}
-                alt="image"
-              />
+              <img src={`${baseUrl}/${image}`} alt="image" />
             </div>
             {/* <div className={s.main_description_bottom_video}>
             <img src="" alt="" />

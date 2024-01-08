@@ -1,5 +1,5 @@
 .sidebar{
-    @apply w-3/12  bg-[#61677A] rounded-md  overflow-auto p-2;
+    @apply w-3/12  bg-[#61677A] bg-opacity-40 rounded-md  overflow-auto p-2;
 }
 .btn_side:active{
     @apply bg-[#A0BFE0] text-white ;

@@ -1,15 +1,74 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+@font-face {
+  font-family: "Adobe-font";
+  src: url("/fonts/JKAbode-Demo.ttf");
+}
+.login {
+  @apply flex flex-col justify-center items-center h-screen overflow-hidden bg-[#27262C];
+}
+.login {
+  background-image: url("/images/backLogin.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.login_title {
+  color: white;
+  font-family: "Adobe-font";
+  font-size: 4rem;
+}
+.login_form {
+  @apply flex flex-col w-3/12 max-w-xl gap-10;
+}
+.login_form > input {
+  @apply outline-none border-b-2 bg-transparent text-white py-2;
+}
+.login_form > input:focus {
+  @apply border-b-blue-600 ease-linear duration-300 ;
+}
+.btn_form > button {
+  background: #5E5DF0;
+  border-radius: 999px;
+  box-shadow: #5E5DF0 0 10px 20px -10px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+  transition: all .3s ease-in;
+}
+.btn_form > button:active{
+  opacity: .4;
+  background: #5E5DF0 .5;
+  transform: scale(1.1);
+  transition: all .3s ease-in;
 
-.login{
-    @apply flex justify-center items-center h-screen overflow-hidden bg-slate-600;
 }
-.login_form{
-    @apply flex flex-col items-center gap-4;
+.btn_form > a:active{
+  opacity: .4;
+  background: #5E5DF0 .5;
+  transform: scale(1.1);
+  transition: all .3s ease-in;
+
 }
-.login_form input{
-    @apply w-72 p-10;
+.btn_form{
+  @apply flex justify-between items-center
+}
+.forgot_pass{
+  @apply text-[#5E5DF0] inline-block  
 }

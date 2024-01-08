@@ -20,19 +20,20 @@ const Defaultpage = () => {
     <div className={s.defaultpage}>
       <section className={s.defaultpage__inner}>
         <h1 className={clsx(s.title_text, "font-Smooch")}>Personal Journal</h1>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti,
-          distinctio molestiae consectetur quaerat vitae dicta reiciendis ipsa,
-          voluptatem aperiam quae assumenda ea consequatur deleniti libero
-          maiores quibusdam excepturi enim voluptates! Quis recusandae, nulla
-          error, ex incidunt, facilis dignissimos sint alias nostrum cupiditate
-          aliquam vero provident consectetur porro architecto! Tempore harum
-          soluta consequatur voluptates, tenetur impedit fuga excepturi at autem
-          iusto. Unde fugit ullam facere, hic necessitatibus nesciunt explicabo
-          dicta tenetur maxime aliquid maiores repudiandae voluptas corrupti
-          praesentium esse quos neque assumenda distinctio dolorem molestiae
-          alias repellat voluptatum. Sapiente, corporis ex.
-        </p>
+        <div className={s.main_text}>
+          <p>
+            Добро пожаловать в ваш личный журнал — ваше уютное место для
+            самовыражения, рефлексии и саморазвития. Наш сайт предназначен для
+            тех, кто ценит моменты, стремится к личному росту и ищет способы
+            улучшить свою жизнь.
+          </p>
+          <p>
+            Это ваш надежный спутник в путешествии по собственной жизни. Здесь
+            вы можете освежить воспоминания, уловить эмоции и выразить свои
+            мысли в письменной форме. Personal Journal — это цифровой аналог
+            традиционного дневника, созданный с учетом современных потребностей.
+          </p>
+        </div>
         <div className={s.page_btn}>
           <Link to="/auth/registration" style={{ margin: 0, padding: 0 }}>
             <Button type="primary" ghost>
@@ -48,29 +49,29 @@ const Defaultpage = () => {
             <div>
               <img src="/taking-notes.png" alt="image" />
               <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error,
-                eveniet.
+                Записывайте свои мысли, чувства и достижения. Personal Journal —
+                это ваше личное пространство, где нет оценок и предрассудков.
               </span>
             </div>
             <div>
               <img src="/taking-notes.png" alt="image" />
               <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error,
-                eveniet.
+                Прикрепляйте изображения, создавайте галереи и делитесь
+                визуальными воспоминаниями.
               </span>
             </div>
             <div>
               <img src="/taking-notes.png" alt="image" />
               <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error,
-                eveniet.
+                Определите свои цели, отслеживайте их выполнение и планируйте
+                будущее.
               </span>
             </div>
             <div>
               <img src="/taking-notes.png" alt="image" />
               <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error,
-                eveniet.
+                Ваши записи остаются только вашими, благодаря нашим мерам
+                безопасности и конфиденциальности.
               </span>
             </div>
           </div>

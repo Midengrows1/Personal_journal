@@ -1,8 +1,8 @@
 .defaultpage {
-  @apply h-screen overflow-hidden bg-slate-900 text-white flex flex-col justify-center;
+  @apply h-screen overflow-hidden bg-[#27262C] text-white flex flex-col justify-center;
 }
 .title_text {
-  @apply text-center text-8xl;
+  @apply text-center text-8xl border-b-2 px-5;
 }
 .defaultpage__inner {
   @apply p-4   max-w-7xl m-auto flex flex-col gap-5 justify-center items-center;
@@ -20,7 +20,7 @@
   @apply text-xl font-thin italic;
 }
 .page__benefits {
-  @apply flex  justify-evenly items-center;
+  @apply flex  justify-evenly items-start ;
 }
 .page__benefits > div {
   @apply w-52 h-full;
@@ -30,4 +30,7 @@
 }
 .page__benefits > div img {
   @apply h-full w-full object-fill;
+}
+.main_text{
+  @apply flex flex-col text-center
 }

@@ -1,5 +1,5 @@
 .main{
-    @apply w-full rounded-md p-4 bg-slate-600 overflow-y-hidden break-words;
+    @apply w-full rounded-md p-4  overflow-y-hidden break-words;
 }
 .main_title{
     @apply text-4xl text-white flex-none;

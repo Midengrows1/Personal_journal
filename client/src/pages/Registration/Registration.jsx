@@ -1,41 +1,31 @@
 import React, { useMemo, useState } from "react";
 import s from "./registration.module.css";
+import { motion, AnimatePresence, easeInOut } from "framer-motion";
 import { AutoComplete, Button, Form, Input, Select, notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 import { NavLink, json, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
-const formItemLayout = {
-  labelCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 8,
-    },
-  },
-  wrapperCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 16,
-    },
-  },
-};
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
 const Registration = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    firstname: "",
+    lastname: "",
+    password: "",
+    username: "",
+  });
+  const h1Variants = {
+    hidden: {
+      y: -50,
+      opacity: 0,
+    },
+    visible: { y: 0, opacity: 1 },
+  };
+  const inpVariants = {
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0 },
+  };
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const api = notification;
   const navigate = useNavigate();
   const [autoCompleteResult, setAutoCompleteResult] = useState([]);
@@ -47,14 +37,15 @@ const Registration = () => {
       duration: 3,
     });
   };
-  const onFinish = async (values) => {
-    console.log("Received values of form:");
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const onFinish = async (e) => {
+    e.preventDefault();
+    console.log(formData);
     try {
       const { data } = await axios
-        .post(
-          "https://personal-journal-server.onrender.com/auth/registration",
-          values
-        )
+        .post(baseUrl + "/auth/registration", formData)
         .then((res) => {
           console.log(res.data);
           openNotification(res.data.message);
@@ -68,91 +59,75 @@ const Registration = () => {
 
   return (
     <div className={s.registration}>
-      <Form
-        className={s.registration_form}
-        {...formItemLayout}
-        form={form}
-        name="register"
-        onFinish={onFinish}
-        scrollToFirstError
-      >
-        <Form.Item
-          name="email"
-          label="E-mail"
-          rules={[
-            {
-              type: "email",
-              message: "The input is not valid E-mail!",
-            },
-            {
-              required: true,
-              message: "Please input your E-mail!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name="firstname"
-          label="Firstname"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name="lastname"
-          label="Lastname"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name="password"
-          label="Password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input.Password />
-        </Form.Item>
-        <Form.Item
-          name="username"
-          label="Username"
-          tooltip="What do you want others to call you?"
-          rules={[
-            {
-              required: true,
-              message: "Please input your nickname!",
-              whitespace: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
-          <Button
-            type="default"
-            htmlType="submit"
-            className={s.registration_btn}
+      <h1 className={s.form_registration_title}>Registration</h1>
+      <form onSubmit={onFinish} className={s.form_registration}>
+        <AnimatePresence>
+          <motion.input
+            key={1}
+            type="email"
+            placeholder="E-mail"
+            name="email"
+            onChange={handleChange}
+            initial={"hidden"}
+            animate={"visible"}
+            variants={inpVariants}
+            transition={{ delay: 0.2 }}
+          />
+          <motion.input
+            key={2}
+            type="text"
+            placeholder="Firstname"
+            name="firstname"
+            onChange={handleChange}
+            initial={"hidden"}
+            animate={"visible"}
+            variants={inpVariants}
+            transition={{ delay: 0.3 }}
+          />
+          <motion.input
+            key={3}
+            type="text"
+            placeholder="Lastname"
+            name="lastname"
+            onChange={handleChange}
+            initial={"hidden"}
+            animate={"visible"}
+            variants={inpVariants}
+            transition={{ delay: 0.4 }}
+          />
+          <motion.input
+            key={4}
+            type="password"
+            placeholder="Password"
+            name="password"
+            onChange={handleChange}
+            initial={"hidden"}
+            animate={"visible"}
+            variants={inpVariants}
+            transition={{ delay: 0.5 }}
+          />
+          <motion.input
+            key={5}
+            type="text"
+            placeholder="Username"
+            name="username"
+            onChange={handleChange}
+            initial={"hidden"}
+            animate={"visible"}
+            variants={inpVariants}
+            transition={{ delay: 0.6 }}
+          />
+          <motion.button
+            key={6}
+            initial={"hidden"}
+            animate={"visible"}
+            variants={inpVariants}
+            type="submit"
           >
             Register
-          </Button>
-        </Form.Item>
-      </Form>
+          </motion.button>
+        </AnimatePresence>
+      </form>
     </div>
   );
 };

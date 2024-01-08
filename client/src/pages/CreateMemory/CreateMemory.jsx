@@ -19,6 +19,7 @@ const { Option } = Select;
 //   console.log(e);
 // };
 const CreateMemory = () => {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const navigate = useNavigate();
   const [file, setFile] = useState(null);
   const [form] = Form.useForm();
@@ -63,11 +64,7 @@ const CreateMemory = () => {
     });
     console.log(obj);
     try {
-      const response = await axios.post(
-        "https://personal-journal-server.onrender.com/create",
-        obj,
-        config
-      );
+      const response = await axios.post(baseUrl + "/create", obj, config);
       // Check the status code to determine if the request was successful
       if (response.status === 200) {
         console.log(response.data);

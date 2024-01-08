@@ -44,10 +44,10 @@ async function registration(req, res) {
 }
 async function login(req, res) {
   try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
     if (!user) {
-      return res.status(404).json({ error: "Введена неверная почта" });
+      return res.status(404).json({ error: "Введён неверный username" });
     }
     try {
       const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -55,7 +55,7 @@ async function login(req, res) {
         return res.status(401).json({ error: "Введён неверный пароль" });
       }
       const token = jwt.sign(
-        { userId: user._id, email: user.email },
+        { userId: user._id, username: user.username, email: user.email },
         "mysecret123",
         {
           expiresIn: "30d",

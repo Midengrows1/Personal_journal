@@ -1,5 +1,6 @@
+@import '../../styles/fonts.css';
 .app_top {
-  @apply flex items-center h-20 bg-[#C5DFF8] text-3xl p-4 justify-between;
+  @apply flex items-center h-20 rounded-md bg-white text-3xl p-4 justify-between;
 }
 .account_container {
   @apply flex gap-6 items-center;
@@ -13,6 +14,7 @@
 .main_date_top {
   @apply bg-red-600;
 }
+ 
 .authorization {
   display: flex;
   gap: 10px;

@@ -1,12 +1,52 @@
+@import '../../styles/fonts.css';
 .registration{
-    @apply h-screen overflow-hidden flex  flex-col justify-center items-center  w-full bg-slate-600;
+    @apply h-screen overflow-hidden flex  flex-col justify-center items-center  w-full ;
 }
-.registration_form{
-    @apply max-w-xl w-full 
+.registration{
+background-image: url("/images/backLogin.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.registration_form >*{
-    @apply w-full
+.form_registration_title{
+    font-family: 'Adobejk';
+    font-size: 3rem;
 }
-.registration_btn{
-    @apply bg-red-800
+.form_registration{
+    @apply flex w-5/12 max-w-lg  flex-col gap-5 bg-[#4044ED] rounded-lg p-4;
+}
+.form_registration>input{
+    @apply  p-1 outline-none border-b-2 border-b-white bg-transparent text-white  inline-block; 
+}
+.form_registration>input:focus{
+    @apply  p-1 outline-none border-b-2; 
+}
+.form_registration>button{
+    display: inline-block;
+background: white;
+  border-radius: 999px;
+  box-shadow: #5E5DF0 0 10px 20px -10px;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+  transition: all .3s ease-in;
+}
+.form_registration>button:active{
+    opacity: .4;
+    background: #5E5DF0 .5;
+    transform: scale(1.1);
+    transition: all .3s ease-in;
 }

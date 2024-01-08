@@ -9,6 +9,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { reverseDeleted } from "../../store/JournalSlice";
 const Memory = ({ title, text, mmArr, id }) => {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const deleted = useSelector((state) => state.auth.deleted);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,11 +21,9 @@ const Memory = ({ title, text, mmArr, id }) => {
   });
   const removeMemory = async () => {
     try {
-      await axiosWithAuth
-        .delete(`https://personal-journal-server.onrender.com//delete/${id}`)
-        .then((res) => {
-          console.log(res.data.message);
-        });
+      await axiosWithAuth.delete(`${baseUrl}/delete/${id}`).then((res) => {
+        console.log(res.data.message);
+      });
       dispatch(reverseDeleted());
     } catch (error) {
       console.log(`${error.message}`);

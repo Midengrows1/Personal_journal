@@ -9,6 +9,7 @@ import Memory from "../Memory";
 import axios from "axios";
 import { useState, useEffect } from "react";
 const Sidebar = ({ dataArr }) => {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const [searchArr, setsearchArr] = useState(dataArr);
   const [show, setShow] = useState(true);
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Sidebar = ({ dataArr }) => {
       },
     });
     const response = await axiosWithAuth.get(
-      `https://personal-journal-server.onrender.com/memories?searchTerm=${value}`
+      `${baseUrl}/memories?searchTerm=${value}`
     );
     if (searchArr.length == 0) {
       setsearchArr(dataArr);
@@ -57,7 +58,7 @@ const Sidebar = ({ dataArr }) => {
             className="site-badge-count-109"
             count={show ? dataArr.length : 0}
             style={{
-              backgroundColor: "#52c41a",
+              backgroundColor: "#4044ED",
             }}
           />
         </div>

@@ -6,7 +6,8 @@ import Login from "../Login";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-function App({}) {
+function App() {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const dispatch = useDispatch();
   const { memoryId } = useParams();
   const stateDeleted = useSelector((state) => state.auth.deleted);
@@ -22,9 +23,7 @@ function App({}) {
   });
   const getMemories = async () => {
     try {
-      const response = await axiosWithAuth.get(
-        "https://personal-journal-server.onrender.com/home"
-      );
+      const response = await axiosWithAuth.get(baseUrl + "/home");
       const resData = response.data.memory;
       setmmryData(resData);
       setmmryObject(resData[resData.length - 1]);
